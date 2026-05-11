@@ -1,0 +1,74 @@
+/* =============================================
+   MANZELI – Admin Panel Styles
+   ============================================= */
+
+.admin-section{padding:32px 0 80px;background:var(--off-white);min-height:calc(100vh - 72px)}
+.admin-container{max-width:1100px;margin:0 auto;padding:0 24px}
+.admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:16px}
+.admin-header h1{font-family:var(--font-heading);font-size:1.7rem;font-weight:700;color:var(--secondary);display:flex;align-items:center;gap:10px}
+.admin-header h1 i{color:var(--primary);font-size:1.3rem}
+.admin-header p{font-size:.9rem;color:var(--dark-gray);margin-top:4px}
+
+/* Filters */
+.admin-filters{display:flex;gap:4px;background:var(--white);padding:4px;border-radius:var(--border-radius-sm);border:1px solid var(--light-gray)}
+.filter-btn{padding:8px 18px;font-size:.85rem;font-weight:500;color:var(--dark-gray);border-radius:8px;transition:var(--transition)}
+.filter-btn:hover{color:var(--charcoal);background:var(--off-white)}
+.filter-btn.active{background:var(--primary);color:var(--white)}
+
+/* Stats */
+.admin-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:28px}
+.admin-stat{display:flex;align-items:center;gap:14px;padding:20px 18px;background:var(--white);border-radius:var(--border-radius);border:1px solid rgba(0,0,0,.05);box-shadow:var(--shadow-sm)}
+.admin-stat-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.admin-stat-num{font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--secondary)}
+.admin-stat-label{font-size:.78rem;color:var(--dark-gray);margin-top:1px}
+
+/* Cards */
+.admin-card{background:var(--white);border-radius:var(--border-radius);padding:24px;margin-bottom:20px;border:1px solid rgba(0,0,0,.05);box-shadow:var(--shadow-sm)}
+.admin-card-title{font-family:var(--font-heading);font-size:1.05rem;font-weight:600;color:var(--secondary);display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.admin-card-title i{color:var(--primary);font-size:.9rem}
+.admin-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+
+/* Breakdown */
+.breakdown-list{display:flex;flex-direction:column;gap:10px}
+.breakdown-item{display:flex;align-items:center;justify-content:space-between;padding:8px 0;font-size:.9rem;color:var(--charcoal)}
+.breakdown-item strong{font-family:var(--font-heading);font-size:1.05rem}
+.text-primary{color:var(--primary-dark)}
+.text-coral{color:var(--coral)}
+.text-lavender{color:var(--lavender)}
+.breakdown-divider{height:1px;background:var(--light-gray);margin:4px 0}
+
+/* Quick Links */
+.quick-links{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quick-link{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--off-white);border-radius:var(--border-radius-sm);font-size:.88rem;font-weight:500;color:var(--charcoal);transition:var(--transition)}
+.quick-link:hover{background:rgba(10,186,181,.06);color:var(--primary);transform:translateX(4px)}
+.quick-link i{color:var(--primary);width:18px;text-align:center}
+
+/* Table */
+.admin-table{width:100%;border-collapse:collapse}
+.admin-table thead th{text-align:left;padding:12px 14px;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--dark-gray);border-bottom:2px solid var(--light-gray)}
+.admin-table tbody td{padding:14px;font-size:.88rem;color:var(--charcoal);border-bottom:1px solid var(--light-gray)}
+.admin-table tbody tr:hover{background:rgba(10,186,181,.02)}
+.admin-table a{color:var(--primary);font-weight:500}
+.admin-table a:hover{text-decoration:underline}
+
+/* User Cell */
+.user-cell{display:flex;align-items:center;gap:10px}
+.user-cell-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--lavender));color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.75rem;flex-shrink:0}
+
+/* Role Select */
+.role-select{padding:6px 10px;border:1px solid var(--light-gray);border-radius:6px;font-size:.82rem;color:var(--charcoal);background:var(--off-white);cursor:pointer}
+.role-select:focus{border-color:var(--primary);outline:none}
+
+/* Reuse from host.css */
+.action-delete{width:32px;height:32px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;background:rgba(239,68,68,.08);color:var(--error);transition:var(--transition)}
+.action-delete:hover{background:var(--error);color:var(--white)}
+
+@media(max-width:768px){
+.admin-grid{grid-template-columns:1fr}
+.admin-stats{grid-template-columns:repeat(2,1fr)}
+.admin-table{font-size:.8rem}
+.admin-table th,.admin-table td{padding:10px 8px}
+.admin-header{flex-direction:column;align-items:flex-start}
+.quick-links{grid-template-columns:1fr}
+}

@@ -1,0 +1,77 @@
+/* =============================================
+   MANZELI – Host Panel Styles
+   ============================================= */
+
+.host-section{padding:32px 0 80px;background:var(--off-white);min-height:calc(100vh - 72px)}
+.host-container{max-width:900px;margin:0 auto;padding:0 24px}
+.host-page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:16px}
+.host-page-header h1{font-family:var(--font-heading);font-size:1.7rem;font-weight:700;color:var(--secondary);display:flex;align-items:center;gap:10px}
+.host-page-header h1 i{color:var(--primary);font-size:1.3rem}
+.host-page-header p{font-size:.9rem;color:var(--dark-gray);margin-top:4px}
+.host-error{display:flex;align-items:center;gap:10px;padding:14px 18px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.18);border-radius:var(--border-radius-sm);color:var(--error);font-size:.88rem;margin-bottom:20px}
+.host-success{display:flex;align-items:center;gap:10px;padding:14px 18px;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.18);border-radius:var(--border-radius-sm);color:var(--success);font-size:.88rem;margin-bottom:20px}
+
+/* Form Cards */
+.form-card{background:var(--white);border-radius:var(--border-radius);padding:28px;margin-bottom:20px;border:1px solid rgba(0,0,0,.05);box-shadow:var(--shadow-sm)}
+.form-card-title{font-family:var(--font-heading);font-size:1.15rem;font-weight:600;color:var(--secondary);margin-bottom:20px;display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--light-gray)}
+.form-card-title i{color:var(--primary);font-size:.95rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group.full{grid-column:span 2}
+.form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--charcoal);margin-bottom:6px;text-transform:uppercase;letter-spacing:.3px}
+.form-group input,.form-group select,.form-group textarea,.host-form>div>textarea{width:100%;padding:12px 14px;border:1.5px solid var(--light-gray);border-radius:var(--border-radius-sm);font-size:.9rem;color:var(--charcoal);background:var(--off-white);transition:var(--transition)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus,.host-form>div>textarea:focus{border-color:var(--primary);background:var(--white);box-shadow:0 0 0 3px rgba(10,186,181,.1)}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-hint{font-size:.82rem;color:var(--dark-gray);margin-bottom:10px}
+
+/* Amenities Checkboxes */
+.amenities-check-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.amenity-check{cursor:pointer}
+.amenity-check input{display:none}
+.amenity-check-box{display:flex;align-items:center;gap:8px;padding:12px 14px;border:1.5px solid var(--light-gray);border-radius:var(--border-radius-sm);font-size:.85rem;color:var(--charcoal);transition:var(--transition);background:var(--off-white)}
+.amenity-check-box i{color:var(--dark-gray);font-size:.85rem}
+.amenity-check input:checked+.amenity-check-box{border-color:var(--primary);background:rgba(10,186,181,.06);color:var(--primary-dark)}
+.amenity-check input:checked+.amenity-check-box i{color:var(--primary)}
+.amenity-check-box:hover{border-color:var(--mid-gray)}
+
+/* Form Actions */
+.form-actions{display:flex;align-items:center;justify-content:flex-end;gap:14px;margin-top:8px}
+.form-cancel{padding:12px 28px;border:1.5px solid var(--light-gray);border-radius:var(--border-radius-sm);font-weight:500;font-size:.9rem;color:var(--dark-gray);transition:var(--transition)}
+.form-cancel:hover{border-color:var(--charcoal);color:var(--charcoal)}
+.form-submit{padding:12px 28px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:var(--white);font-weight:600;font-size:.9rem;border-radius:var(--border-radius-sm);border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:var(--transition);box-shadow:0 4px 14px rgba(10,186,181,.25)}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(10,186,181,.35)}
+
+/* My Listings List */
+.listings-list{display:flex;flex-direction:column;gap:14px}
+.listing-row{display:flex;align-items:center;gap:18px;padding:18px 20px;background:var(--white);border-radius:var(--border-radius);border:1px solid rgba(0,0,0,.05);transition:var(--transition)}
+.listing-row:hover{box-shadow:var(--shadow-md);transform:translateX(4px)}
+.listing-row-img{width:100px;height:75px;border-radius:var(--border-radius-sm);overflow:hidden;flex-shrink:0;position:relative}
+.listing-row-img img{width:100%;height:100%;object-fit:cover}
+.listing-row-img .property-badge{font-size:.65rem;padding:3px 8px;top:6px;left:6px}
+.listing-row-info{flex:1;min-width:0}
+.listing-row-info h3{font-family:var(--font-heading);font-size:.95rem;font-weight:600;color:var(--secondary);margin-bottom:4px}
+.listing-row-info h3 a:hover{color:var(--primary)}
+.listing-row-info p{font-size:.82rem;color:var(--dark-gray);margin-bottom:6px}
+.listing-row-info p i{color:var(--coral);margin-right:4px;font-size:.75rem}
+.listing-row-stats{display:flex;gap:14px;flex-wrap:wrap}
+.listing-row-stats span{font-size:.78rem;color:var(--mid-gray)}
+.listing-row-stats i{margin-right:3px;color:var(--primary)}
+.listing-row-price{font-family:var(--font-heading);font-size:1.1rem;font-weight:700;color:var(--primary-dark);text-align:right;flex-shrink:0}
+.listing-row-price span{font-family:var(--font-body);font-size:.75rem;font-weight:400;color:var(--dark-gray)}
+.listing-row-status{flex-shrink:0}
+.listing-row-actions{display:flex;gap:8px;flex-shrink:0}
+.action-edit,.action-delete{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:var(--transition)}
+.action-edit{background:rgba(10,186,181,.08);color:var(--primary)}
+.action-edit:hover{background:var(--primary);color:var(--white)}
+.action-delete{background:rgba(239,68,68,.08);color:var(--error)}
+.action-delete:hover{background:var(--error);color:var(--white)}
+
+@media(max-width:768px){
+.form-grid{grid-template-columns:1fr}
+.form-group.full{grid-column:span 1}
+.listing-row{flex-direction:column;align-items:flex-start}
+.listing-row-img{width:100%;height:160px}
+.listing-row-price{text-align:left}
+.listing-row-actions{align-self:flex-end}
+.host-page-header{flex-direction:column;align-items:flex-start}
+.amenities-check-grid{grid-template-columns:repeat(2,1fr)}
+}
