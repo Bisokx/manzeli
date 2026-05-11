@@ -1,4 +1,5 @@
 <?php
+define('GOOGLE_CLIENT_ID', '754248117017-cuenou83fu97oakripkt5k2hg59aap0e.apps.googleusercontent.com');
 define('GOOGLE_CLIENT_SECRET', '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');
 define('GOOGLE_REDIRECT_URI', 'https://manzeli-production.up.railway.app/includes/google-callback.php');
 
