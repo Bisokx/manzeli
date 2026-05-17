@@ -148,7 +148,7 @@ $bookingId = $pdo->lastInsertId();
         $headers .= "From: Manzeli <noreply@manzeli.com>\r\n";
         $headers .= "Reply-To: info@manzeli.com\r\n";
         
-        @mail($userEmail, $subject, $htmlMessage, $headers);
+        manzeli_mail($userEmail, $subject, $htmlMessage);
     }
 }
 
