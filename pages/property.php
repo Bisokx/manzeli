@@ -618,9 +618,7 @@ if ($isLoggedIn) {
                             <span>Verified</span>
                         </div>
                     </div>
-                    <a href="/pages/messages.php?to=<?php echo $property['host_id']; ?>&property=<?php echo $id; ?>" class="host-contact-btn">
-                        <i class="fas fa-comment-dots"></i> Message Host
-                    </a>
+                  
                 </div>
 
                 <!-- Message Host Form -->
