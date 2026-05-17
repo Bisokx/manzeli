@@ -3,6 +3,7 @@ $pageTitle = 'Forgot Password';
 $extraCSS = '<link rel="stylesheet" href="/assets/css/auth.css">';
 require_once '../includes/db.php';
 require_once '../includes/header.php';
+require_once '../includes/smtp-mail.php';
 
 if ($isLoggedIn) {
     header('Location: dashboard.php');
@@ -62,11 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 </html>';
             
-            $headers = "MIME-Version: 1.0\r\n";
-            $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-            $headers .= "From: Manzeli <noreply@manzeli.com>\r\n";
+         
             
-            @mail($email, $subject, $htmlMessage, $headers);
+            manzeli_mail($email, $subject, $htmlMessage, $headers);
             
             header('Location: forgot-password.php?success=sent');
             exit;
