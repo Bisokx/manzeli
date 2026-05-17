@@ -134,7 +134,7 @@ $bookingId = $pdo->lastInsertId();
             </div>
             
             <p style="color:#666;font-size:14px;line-height:1.6;">View your booking anytime in your <b>Dashboard → My Bookings</b>.</p>
-            <p style="color:#666;font-size:14px;">Questions? Email <b>info@manzeli.com</b> or call <b>+961 70 322 369</b></p>
+            <p style="color:#666;font-size:14px;">Questions? Email <b>manzeli.info@gmail.com</b> or call <b>+961 70 322 369</b></p>
         </div>
         <div style="text-align:center;padding:20px;color:#999;font-size:12px;border-top:1px solid #eee;">
             &copy; ' . date('Y') . ' Manzeli – منزلي | West Bekaa, Sohmor, Lebanon
