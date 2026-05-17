@@ -457,6 +457,7 @@
 .booking-card {
     position: sticky;
     top: 92px;
+    z-index: 10;
 }
 .sidebar-card-title {
     font-family: var(--font-heading);
