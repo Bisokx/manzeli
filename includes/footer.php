@@ -44,7 +44,7 @@
                 <ul class="footer-contact">
                     <li><i class="fas fa-map-marker-alt"></i> West Bekaa, Sohmor, Lebanon</li>
                     <li><i class="fas fa-phone"></i> +961 70 322 369</li>
-                    <li><i class="fas fa-envelope"></i> info@manzeli.com</li>
+                    <li><i class="fas fa-envelope"></i> manzeli.info@gmail.com</li>
                 </ul>
             </div>
         </div>
