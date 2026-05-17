@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
          
             
-            manzeli_mail($email, $subject, $htmlMessage, $headers);
+           manzeli_mail($email, $subject, $htmlMessage); 
             
             header('Location: forgot-password.php?success=sent');
             exit;
