@@ -143,10 +143,7 @@ $bookingId = $pdo->lastInsertId();
 </body>
 </html>';
         
-        $headers = "MIME-Version: 1.0\r\n";
-        $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-        $headers .= "From: Manzeli <noreply@manzeli.com>\r\n";
-        $headers .= "Reply-To: info@manzeli.com\r\n";
+
         
         manzeli_mail($userEmail, $subject, $htmlMessage);
     }
