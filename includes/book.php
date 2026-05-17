@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'db.php';
+require_once 'smtp-mail.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../pages/login.php');
