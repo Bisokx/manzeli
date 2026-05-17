@@ -119,10 +119,6 @@ $bookingId = $pdo->lastInsertId();
                         <td style="padding:8px 0;color:#333;font-weight:600;">' . $guests . '</td>
                     </tr>
                     <tr>
-                        <td style="padding:8px 0;color:#888;">Payment</td>
-                        <td style="padding:8px 0;color:#333;font-weight:600;">💳 Credit Card</td>
-                    </tr>
-                    <tr>
                         <td style="padding:8px 0;color:#888;">Status</td>
                         <td style="padding:8px 0;color:#155724;font-weight:600;">✓ Confirmed</td>
                     </tr>
