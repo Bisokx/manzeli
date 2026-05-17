@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../../includes/db.php';
+require_once '../../includes/smtp-mail.php';
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header('Location: ../login.php');
@@ -49,14 +50,9 @@ $htmlMessage = '
 </body>
 </html>';
 
-// Email headers
-$headers = "MIME-Version: 1.0\r\n";
-$headers .= "Content-type: text/html; charset=UTF-8\r\n";
-$headers .= "From: Manzeli <info@manzeli.com>\r\n";
-$headers .= "Reply-To: info@manzeli.com\r\n";
 
 // Send email
-$sent = @mail($toEmail, $subject, $htmlMessage, $headers);
+$sent = manzeli_mail($toEmail, $subject, $htmlMessage, $headers);
 
 // Mark as read
 $pdo->prepare("UPDATE contact_messages SET is_read = 1 WHERE id = ?")->execute([$msgId]);
