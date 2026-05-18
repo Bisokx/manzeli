@@ -1,4 +1,3 @@
-
 <?php
 $pageTitle = 'Add Property';
 $extraCSS = '<link rel="stylesheet" href="/assets/css/host.css">';
@@ -222,7 +221,7 @@ if ($editing) {
             </div>
 
             <!-- Amenities -->
-            <div class="form-card">
+            <div class="form-card" id="amenitiesCard">
                 <h2 class="form-card-title"><i class="fas fa-check-circle"></i> Amenities</h2>
                 <div class="amenities-check-grid">
                     <?php foreach ($amenitiesList as $a): ?>
@@ -303,6 +302,7 @@ function toggleFields() {
     document.getElementById('ageGroup').style.display = isLand ? 'none' : '';
     document.getElementById('zoneGroup').style.display = isLand ? '' : 'none';
     document.getElementById('pricePeriodGroup').style.display = isRent ? '' : 'none';
+    document.getElementById('amenitiesCard').style.display = isLand ? 'none' : '';
 }
 toggleFields();
 
