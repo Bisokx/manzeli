@@ -63,7 +63,7 @@ require_once '../includes/header.php';
                 <div style="background:var(--white);padding:28px;border-radius:var(--border-radius);box-shadow:var(--shadow-sm);margin-bottom:16px">
                     <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px">
                         <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(167,139,250,.12),rgba(56,189,248,.12));color:var(--lavender);display:flex;align-items:center;justify-content:center;font-size:1rem"><i class="fas fa-envelope"></i></div>
-                        <div><strong style="color:var(--secondary);font-size:.95rem">Email</strong><p style="color:var(--dark-gray);font-size:.88rem">info@manzeli.com</p></div>
+                        <div><strong style="color:var(--secondary);font-size:.95rem">Email</strong><p style="color:var(--dark-gray);font-size:.88rem">Manzeli.info@gmail.com</p></div>
                     </div>
                 </div>
                 <div style="background:var(--white);padding:28px;border-radius:var(--border-radius);box-shadow:var(--shadow-sm)">
