@@ -220,7 +220,7 @@ function searchProperties($pdo, $lower, $original) {
 // GROQ API — With database context
 // ============================================================
 function callGroqAPI($userMessage, $dbStats) {
-    $apiKey = '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';
+   $apiKey = getenv('GROQ_API_KEY');
     
     // Build database context for AI
     $dbContext = "\n\nCURRENT DATABASE STATUS (live data):\n";
