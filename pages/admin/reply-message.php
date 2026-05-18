@@ -52,7 +52,7 @@ $htmlMessage = '
 
 
 // Send email
-$sent = manzeli_mail($toEmail, $subject, $htmlMessage, $headers);
+$sent = manzeli_mail($toEmail, $subject, $htmlMessage);
 
 // Mark as read
 $pdo->prepare("UPDATE contact_messages SET is_read = 1 WHERE id = ?")->execute([$msgId]);
