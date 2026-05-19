@@ -22,6 +22,40 @@ if (isset($_GET['edit'])) {
     if ($property) $editing = true;
 }
 
+// ============================================================
+// SUPABASE IMAGE UPLOAD
+// ============================================================
+function uploadToSupabase($tmpFile, $fileName) {
+    $supabaseUrl = 'https://jspowpudnacrxvyqeeyr.supabase.co';
+    $supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpzcG93cHVkbmFjcnh2eXFlZXlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNzkzMDMsImV4cCI6MjA5NDc1NTMwM30.hP7HvgyN89Keh29Fgh8sxUhNNB25og-IXLZ-8B-SdM0';
+    $bucket = 'property-images';
+
+    $fileData = file_get_contents($tmpFile);
+    $uploadUrl = $supabaseUrl . '/storage/v1/object/' . $bucket . '/' . $fileName;
+
+    $ch = curl_init($uploadUrl);
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => $fileData,
+        CURLOPT_HTTPHEADER => [
+            'Authorization: Bearer ' . $supabaseKey,
+            'Content-Type: image/jpeg',
+            'x-upsert: true'
+        ]
+    ]);
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($httpCode === 200 || $httpCode === 201) {
+        return $supabaseUrl . '/storage/v1/object/public/' . $bucket . '/' . $fileName;
+    }
+
+    return null;
+}
+
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title'] ?? '');
@@ -48,7 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$title, $description, $listingType, $propertyType, $price, $pricePeriod, $location, $areaSqm, $bedrooms, $bathrooms, $floorNumber, $buildingAge, $zoneType, $editId, $userId]);
             $propId = $editId;
 
-            // Clear old amenities and images
             $pdo->prepare("DELETE FROM property_amenities WHERE property_id = ?")->execute([$propId]);
             $pdo->prepare("DELETE FROM property_images WHERE property_id = ?")->execute([$propId]);
         } else {
@@ -62,22 +95,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pdo->prepare("INSERT INTO property_amenities (property_id, amenity_id) VALUES (?, ?)")->execute([$propId, (int)$amenityId]);
         }
 
-        // Handle existing images (kept during edit)
+        // Handle existing images
         $imgIndex = 0;
         foreach ($existingImages as $existingPath) {
             $pdo->prepare("INSERT INTO property_images (property_id, image_path, is_main) VALUES (?, ?, ?)")->execute([$propId, $existingPath, $imgIndex === 0 ? 1 : 0]);
             $imgIndex++;
         }
 
-        // Handle new uploaded images
-        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/assets/images/';
-        if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0755, true);
-        }
-
+        // Handle new uploaded images — upload to Supabase
         if (!empty($_FILES['images']['name'][0])) {
             $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
-            $maxSize = 5 * 1024 * 1024; // 5MB
+            $maxSize = 5 * 1024 * 1024;
 
             foreach ($_FILES['images']['tmp_name'] as $key => $tmpName) {
                 if ($_FILES['images']['error'][$key] !== UPLOAD_ERR_OK) continue;
@@ -85,13 +113,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($_FILES['images']['size'][$key] > $maxSize) continue;
 
                 $ext = pathinfo($_FILES['images']['name'][$key], PATHINFO_EXTENSION);
-                $filename = 'prop_' . $propId . '_' . time() . '_' . $key . '.' . $ext;
-                $destination = $uploadDir . $filename;
+                $fileName = 'prop_' . $propId . '_' . time() . '_' . $key . '.' . $ext;
 
-                if (move_uploaded_file($tmpName, $destination)) {
-                    $imagePath = '/assets/images/' . $filename;
+                $imageUrl = uploadToSupabase($tmpName, $fileName);
+
+                if ($imageUrl) {
                     $isMain = ($imgIndex === 0) ? 1 : 0;
-                    $pdo->prepare("INSERT INTO property_images (property_id, image_path, is_main) VALUES (?, ?, ?)")->execute([$propId, $imagePath, $isMain]);
+                    $pdo->prepare("INSERT INTO property_images (property_id, image_path, is_main) VALUES (?, ?, ?)")->execute([$propId, $imageUrl, $isMain]);
                     $imgIndex++;
                 }
             }
@@ -105,7 +133,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Fetch amenities for checkboxes
 $amenitiesList = $pdo->query("SELECT * FROM amenities ORDER BY name")->fetchAll();
 
-// If editing, get current amenity ids and images
 $currentAmenities = [];
 if ($editing) {
     $ca = $pdo->prepare("SELECT amenity_id FROM property_amenities WHERE property_id = ?");
@@ -306,7 +333,6 @@ function toggleFields() {
 }
 toggleFields();
 
-// Image upload preview
 const imageInput = document.getElementById('imageInput');
 const uploadPreview = document.getElementById('uploadPreview');
 const uploadArea = document.getElementById('uploadArea');
@@ -317,7 +343,6 @@ if (imageInput) {
     });
 }
 
-// Drag & drop
 if (uploadArea) {
     uploadArea.addEventListener('dragover', function(e) {
         e.preventDefault();
