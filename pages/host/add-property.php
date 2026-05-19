@@ -49,11 +49,14 @@ function uploadToSupabase($tmpFile, $fileName, $mimeType) {
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
 
-    if ($httpCode === 200 || $httpCode === 201) {
-        return $supabaseUrl . '/storage/v1/object/public/' . $bucket . '/' . $fileName;
-    }
+   if ($httpCode === 200 || $httpCode === 201) {
+    return $supabaseUrl . '/storage/v1/object/public/' . $bucket . '/' . $fileName;
+}
 
-    return null;
+error_log('Supabase upload failed. HTTP: ' . $httpCode . ' Response: ' . $response);
+return null;
+
+   
 }
 
 // Handle form submission
