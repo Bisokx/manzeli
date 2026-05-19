@@ -48,7 +48,7 @@
 }
 .gallery-main {
     position: relative;
-    height: 350px;
+    height: 300px;
     border-radius: var(--border-radius-lg);
     overflow: hidden;
     background: var(--light-gray);
