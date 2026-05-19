@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Handle new uploaded images — upload to Supabase
         if (!empty($_FILES['images']['name'][0])) {
             $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
-            $maxSize = 5 * 1024 * 1024;
+            $maxSize = 10 * 1024 * 1024;
 
             foreach ($_FILES['images']['tmp_name'] as $key => $tmpName) {
                 if ($_FILES['images']['error'][$key] !== UPLOAD_ERR_OK) continue;
