@@ -25,7 +25,7 @@ if (isset($_GET['edit'])) {
 // ============================================================
 // SUPABASE IMAGE UPLOAD
 // ============================================================
-function uploadToSupabase($tmpFile, $fileName) {
+function uploadToSupabase($tmpFile, $fileName, $mimeType) {
     $supabaseUrl = 'https://jspowpudnacrxvyqeeyr.supabase.co';
     $supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpzcG93cHVkbmFjcnh2eXFlZXlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNzkzMDMsImV4cCI6MjA5NDc1NTMwM30.hP7HvgyN89Keh29Fgh8sxUhNNB25og-IXLZ-8B-SdM0';
     $bucket = 'property-images';
@@ -40,7 +40,7 @@ function uploadToSupabase($tmpFile, $fileName) {
         CURLOPT_POSTFIELDS => $fileData,
         CURLOPT_HTTPHEADER => [
             'Authorization: Bearer ' . $supabaseKey,
-            'Content-Type: image/jpeg',
+            'Content-Type: ' . $mimeType,
             'x-upsert: true'
         ]
     ]);
@@ -109,13 +109,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             foreach ($_FILES['images']['tmp_name'] as $key => $tmpName) {
                 if ($_FILES['images']['error'][$key] !== UPLOAD_ERR_OK) continue;
-                if (!in_array($_FILES['images']['type'][$key], $allowedTypes)) continue;
+                $mimeType = $_FILES['images']['type'][$key];
+                if (!in_array($mimeType, $allowedTypes)) continue;
                 if ($_FILES['images']['size'][$key] > $maxSize) continue;
 
                 $ext = pathinfo($_FILES['images']['name'][$key], PATHINFO_EXTENSION);
                 $fileName = 'prop_' . $propId . '_' . time() . '_' . $key . '.' . $ext;
 
-                $imageUrl = uploadToSupabase($tmpName, $fileName);
+                $imageUrl = uploadToSupabase($tmpName, $fileName, $mimeType);
 
                 if ($imageUrl) {
                     $isMain = ($imgIndex === 0) ? 1 : 0;
